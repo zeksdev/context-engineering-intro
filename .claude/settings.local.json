@@ -21,7 +21,9 @@
       "Bash(dotnet build:*)",
       "Bash(sed:*)",
       "Bash(dotnet ef migrations:*)",
-      "Bash(dotnet ef database:*)"
+      "Bash(dotnet ef database:*)",
+      "Bash(dotnet restore:*)",
+      "WebFetch(domain:fast-endpoints.com)"
     ],
     "deny": []
   }
