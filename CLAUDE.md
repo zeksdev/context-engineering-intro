@@ -23,9 +23,20 @@
 ### 📎 Style & Conventions
 - **Use C#** as the primary language.
 - **Use latest stable .NET**
-- **Use `FluentValidation` for data validation**.
-- **Use `FastEndpoints` for APIs and `EntityFrameworkCore` for ORM if applicable.**
+- **I always name projects with prefix of main solution** Here is example: Bookstore.Api, Bookstore.Web, Bookstore.Api.Contracts etc.
+- Usually **I don't use Clean Architecture**. I prefer a simpler solution. I use standard projects such as *.API (for endpoints and web api), *.Web (for hosting UI—typically Blazor Server), *.API.Contracts (for DTOs) 
+- **Use `FluentValidation` for data validation**. I prefer to put validation class in the same file as my DTO—This is because I can reuse same validation logic on backend and frontend
+- **Use `FastEndpoints`** for APIs. Put all endpoints in the `Endpoints` folder.
+- **Use `EntityFrameworkCore`** for ORM. Put inherited DbContext into Persistence folder.
+- Entity classes should be in the **Domain** folder.
 - Write **documentation comment for every method** using the C# style: (https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/xmldoc/?redirectedfrom=MSDN)
+- **Use `Serilog` for logging** and ensure all logs are structured.
+- User separate project for DTOs and shared code. Usually I like to name this class library project as <Project name>.Api.Contracts
+- **Do not use any of the mapping libraries** like AutoMapper. Instead, use **manual mapping** for DTOs and entities. **Create extension methods** for mapping from DTO to Entity and vice versa.
+- On frontend, I usually **bind forms directly to DTO**, I don't use separate models in a UI project. This is to avoid repetitions
+- My DTO class usually has Clone() method
+- When my entity has a navigation property in DTO which represents this Entity I usually include related Id and Name properties. Here is an example: Vehicle entity has VehicleBrand(Id, Name) navigation property. Then my DTO for Vehicle contains 2 properties: VehicleBrandId and VechileBrandName
+- I put DTOs into Api.Contracts project into the folder DTOs. When I name DTO, I don't add any suffix
 
 ### 📚 Documentation & Explainability
 - **Update `README.md`** when new features are added, dependencies change, or setup steps are modified.
