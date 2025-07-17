@@ -7,6 +7,10 @@
 - **Never create a file longer than 500 lines of code.** If a file approaches this limit, refactor by splitting it into modules or helper files.
 - **Organize code into clearly separated modules**, grouped by feature or responsibility.
 - **Use clear, consistent imports**
+- **Always** put a solution file (.sln) in the /src folder
+- **Group** endpoints by feature in the `Endpoints` folder. E.g.: `Endpoints/Vehicles/`, `Endpoints/Brands/` 
+- **Create .http files** for each endpoint group in the `Endpoints/<Feature>` folder to test them easily.
+- **Do not forget** to reference Api.Contracts project in the API project. This is needed to use DTOs in the API project.
 
 ### 🧪 Testing & Reliability
 - **After updating any logic**, check whether existing unit tests need to be updated. If so, do it.
@@ -23,8 +27,9 @@
 ### 📎 Style & Conventions
 - **Use C#** as the primary language.
 - **Use latest stable .NET**
+- For developing backends, I always use **ASP.NET Core** or in some cases **Service Workers**
 - **I always name projects with prefix of main solution** Here is example: Bookstore.Api, Bookstore.Web, Bookstore.Api.Contracts etc.
-- Usually **I don't use Clean Architecture**. I prefer a simpler solution. I use standard projects such as *.API (for endpoints and web api), *.Web (for hosting UI—typically Blazor Server), *.API.Contracts (for DTOs) 
+- Usually **I don't use Clean Architecture**. I prefer a simpler solution. I use standard projects such as *.API (for endpoints and web api), *.Web (for hosting UI—typically Blazor Server), *.API.Contracts (for DTOs)
 - **Use `FluentValidation` for data validation**. I prefer to put validation class in the same file as my DTO—This is because I can reuse same validation logic on backend and frontend
 - **Use `FastEndpoints`** for APIs. Put all endpoints in the `Endpoints` folder.
 - **Use `EntityFrameworkCore`** for ORM. Put inherited DbContext into Persistence folder.
@@ -37,11 +42,17 @@
 - My DTO class usually has Clone() method
 - When my entity has a navigation property in DTO which represents this Entity I usually include related Id and Name properties. Here is an example: Vehicle entity has VehicleBrand(Id, Name) navigation property. Then my DTO for Vehicle contains 2 properties: VehicleBrandId and VechileBrandName
 - I put DTOs into Api.Contracts project into the folder DTOs. When I name DTO, I don't add any suffix
+- I prefer to use **inline constructors**
+- For endpoints, you don't need to inject logger. Logger is provided by FastEndpoints automatically.
+- For database, I use SQL Server running in Docker. You can use **User=sa, Password=S3cretP@ssw0rd**
 
 ### 📚 Documentation & Explainability
 - **Update `README.md`** when new features are added, dependencies change, or setup steps are modified.
 - **Comment non-obvious code** and ensure everything is understandable to a mid-level developer.
 - When writing complex logic, **add an inline `# Reason:` comment** explaining the why, not just the what.
+- Here are links to documentation for libraries I like to use:
+  - FastEndpoints: [Getting Started](https://fast-endpoints.com/docs/get-started), [Validation](https://fast-endpoints.com/docs/validation#request-dto-validation), [Dependency Injection](https://fast-endpoints.com/docs/validation#request-dto-validation), [Swagger support](https://fast-endpoints.com/docs/swagger-support), [Exception handling](https://fast-endpoints.com/docs/exception-handler#unhandled-exception-handler), [Pre/Post processors](https://fast-endpoints.com/docs/pre-post-processors#pre-processors), [Event Bus](https://fast-endpoints.com/docs/event-bus#_1-define-an-event-model-dto), [Command Bus](https://fast-endpoints.com/docs/command-bus#_1-define-a-command)
+  - FluentValidation: (https://docs.fluentvalidation.net/en/latest/), [Built-in validators](https://docs.fluentvalidation.net/en/latest/built-in-validators.html), [Collections](https://docs.fluentvalidation.net/en/latest/collections.html)
 
 ### 🧠 AI Behavior Rules
 - **Never assume missing context. Ask questions if uncertain.**
