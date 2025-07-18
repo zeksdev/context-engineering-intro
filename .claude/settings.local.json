@@ -23,7 +23,10 @@
       "Bash(dotnet ef migrations:*)",
       "Bash(dotnet ef database:*)",
       "Bash(dotnet restore:*)",
-      "WebFetch(domain:fast-endpoints.com)"
+      "WebFetch(domain:fast-endpoints.com)",
+      "Bash(dotnet sln:*)",
+      "Bash(dotnet add:*)",
+      "Bash(timeout:*)"
     ],
     "deny": []
   }
